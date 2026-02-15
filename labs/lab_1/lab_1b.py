@@ -37,13 +37,32 @@ def simple_calculator(operation: str, num1: float, num2: float) -> float:
     else:
         raise ValueError("Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'.")
 
+def sanitize_input(prompt: str) -> float:
+    """
+    Function that takes in a user input an returns a valid number
+
+    Args:
+        str: A prompt for asking the user
+
+    Returns:
+        float: The santizied numeric input by the user
+    """
+
+    while True:
+        try:
+            number = float(input(prompt))
+            return number
+        except ValueError:
+            print(f"Invalid input. Please enter in a valid number.")
+
+
 def main():
     
     print(f"===== Simple Calculator =====")
 
     # Ask the user for sample input    
-    num1 = float(input("Enter the first number: "))
-    num2 = float(input("Enter the second number: "))
+    num1 = sanitize_input("Enter the first number: ")
+    num2 = sanitize_input("Enter the second number: ")
     operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
 
     # Perform the calculation and display the result
